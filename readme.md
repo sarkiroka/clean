@@ -2,7 +2,7 @@
 
 ## A probléma
 
-Amikor jQuery-t használsz, érezted már, hogy beköltözik a dizájn a javascript fájljaidba? Erre gondolok:
+Amikor jQuery-t használsz, érezted már, hogy beköltözik a dizájn / tördelés egy része a javascript fájljaidba? Erre gondolok:
 ```
 $('.button').click( ()=>{ $(this).addClass('clicked'); });
 ```
@@ -80,6 +80,21 @@ hello.json
 {
 	"&": {
 		"click": "myscript.hello"
+	}
+}
+```
+
+### Tisztán, nem keverve!
+
+Nem akarok egy új jQuery-t, vagy AngularJS-t bemutatni. Viszont a fenti példából is láthattad, hogy ez a rendszer segít, hogy minden érintett rész a legjobbat hozhassa ki magából, minden rész maradjon tisztán, nem keverve.
+
+## Adatkötés
+
+binding-example.json
+```
+{
+	"input[name=\"username\"]": {
+		"bind": "myscript.username"
 	}
 }
 ```
