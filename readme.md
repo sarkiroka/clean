@@ -20,25 +20,25 @@ Amikor komponens alapon fejlesztesz, érezted már, hogy indokolatlanul összeke
 
 ## Az új remény
 
-Képzeld el, hogy a HTML-ed tiszta marad, mentes minden sallangtól, és tényleg csak annyi lesz benne, amennyit a tördelő beleálmodott. Vagy amennyit a stackoverflow-ról lemásoltál :)
+Képzeld el, hogy a HTML-ed tiszta marad, mentes minden sallangtól, és tényleg csak annyi lesz benne, amennyit a tördelő beleálmodott. Vagy amennyit a stackoverflow-ról lemásoltál :) Ha valami probléma folytán elmaradni a css/js betöltése, akkor is viszonylag élvezhető marad, sőt, még akár müködő is!
 
-Képzeld el, hogy a javascript kódod tiszta marad, csak annyi lesz benne, amennyi a tényleges üzleti logikádhoz kell.
+Képzeld el, hogy a javascript kódod tiszta marad, csak annyi lesz benne, amennyi a tényleges üzleti logikádhoz kell. Nem fog kelleni bele injektálás, annotálás, DOM-részlet.
 
-Képzeld el, hogy úgy a HTML-ed, CSS-ed, és a JS-ed is újra felhasználható lesz, akár külön külön, akár egyben.
+Képzeld el, hogy úgy a HTML-ed, CSS-ed, és a JS-ed is újra felhasználható lesz, akár külön külön, akár egyben. Annak ellenére így van, hogy minden ügyfél kicsit máshogy akarja.
 
 ### Hogyan?
 
-Tudom, hogy senki sem ír a való életben helloworld-szerű programokat, de mégis, azon keresztül a legegyszerűbb bemutatni. Különösen egy ennyire más megközelítés esetén.
+Tudom, hogy senki sem ír a való életben helloworld-szerű programokat, de mégis, azon keresztül a legegyszerűbb bemutatni. Különösen egy ennyire más megközelítés esetén fontos, hogy az alapokkal kezdjük.
 
 hello.js
-```
+```javascript
 alert('hello world')
 ```
 hello.html
-```
+```html
 <html>
 	<head>
-		<script src='clean.js?hello.json=body input[type="button"]'></script>
+		<script src='clean.js?hello.json=body'></script>
 	</head>
 
 	<body>
@@ -47,9 +47,9 @@ hello.html
 </html>
 ```
 hello.json
-```
+```json
 {
-	"&": {
+	"input[type='button']": {
 		"click": "hello"
 	}
 }
@@ -57,7 +57,7 @@ hello.json
 Tehát a JS fájlunk mindössze azt az üzleti logikát tartalmazta, amire az hivatott, egyetlen alert-et.
 A HTML sem hemzseg a sallangoktól. Behúztuk a [clean.js](clean.js)-t, és...
 
-és összekötöttük a HTML egy részét a JS-el. Egészen pontosan egy összekötő leíró fájl nevét, mint paraméter nevéhez értékül egy CSS selectort rendeltünk értékül. Ennek jelentése pedig az, hogy "ezt az összekötő fájlt használd a következő szelektoron".
+és összekötöttük a HTML egy részét a JS-el. Egészen pontosan egy összekötő leíró fájl nevét, mint paraméter nevéhez értékül egy CSS selectort rendeltünk értékül. Ennek jelentése pedig az, hogy "ezt az összekötő fájlt használd a következő szelektoron, mint root elemen".
 
 A JSON fájlunk egy kétszintű leíró:
  * Első szinten egy - a kapott paraméterhez képest relatív - CSS szelektor van
@@ -91,10 +91,71 @@ Nem akarok egy új jQuery-t, vagy AngularJS-t bemutatni. Viszont a fenti példá
 ## Adatkötés
 
 binding-example.json
-```
+```json
 {
 	"input[name=\"username\"]": {
 		"bind": "myscript.username"
 	}
 }
 ```
+
+Van lehetőség az angularban már úgy megszokott "beeírok az inputba és megjelenik egy div-ben" dologra:
+```json
+{
+	"input[name=\"username\"]": {
+		"bind": "myscript.username"
+	},
+	"div.feedback": {
+		"bind": "myscript.username"
+	}
+}
+```
+
+
+## Lista, template, stb
+myscript.js
+```javascript
+var data=['alma', 'körte', 'szilva'];
+```
+html
+```html
+<body>
+	<ul>
+		<li>
+			<span>Lorem</span>
+		</li>
+		<li>
+			<span>ipsum</span>
+		</li>
+	</ul>
+</body>
+```
+json
+```json
+{
+	"body ul li": {
+		"foreach": "myscript.data"
+	},
+	"body ul li span": {
+		"bind": "myscript.data/$item"
+	}
+}
+```
+A példa ugyan nem igényel magyarázatot, mégis elmondanám, hogy a html önmagában csak "sitebuild" és a benne lévő két listaelem csak mint template szolgál.
+
+A json-ban lévő foreach is egyértelmű, a megadott dolog elemein fog végigiterálni. Ez lehet tömb vagy objektum.
+
+A második elem a json-ban egy `span` amelynek értékébe szeretnénk az iteráláshoz használt dolog aktuális elemét betenni.
+
+## json API
+- bind
+- foreach
+- click
+- focus
+- blur
+- hover
+- leave
+
+## javascript export lehetőségek
+Lehet a már mutatott module.exports-al és egyelőre maradjunk is ennyiben.
+
