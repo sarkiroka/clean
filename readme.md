@@ -20,15 +20,15 @@ Amikor komponens alapon fejlesztesz, érezted már, hogy indokolatlanul összeke
 
 ## Az új remény
 
-Képzeld el, hogy a HTML-ed tiszta marad, mentes minden sallangtól, és tényleg csak annyi lesz benne, amennyit a tördelő beleálmodott. Vagy amennyit a stackoverflow-ról lemásoltál :) Ha valami probléma folytán elmaradni a css/js betöltése, akkor is viszonylag élvezhető marad, sőt, még akár müködő is!
+Képzeld el, hogy a HTML-ed tiszta marad, mentes minden sallangtól, és tényleg csak annyi lesz benne, amennyit a tördelő beleálmodott. Vagy amennyit a stackoverflow-ról lemásoltál :) Ha valami probléma folytán elmaradna a css/js betöltése, akkor is viszonylag élvezhető marad, sőt, még akár müködő is!
 
-Képzeld el, hogy a javascript kódod tiszta marad, csak annyi lesz benne, amennyi a tényleges üzleti logikádhoz kell. Nem fog kelleni bele injektálás, annotálás, DOM-részlet.
+Képzeld el, hogy a javascript kódod tiszta marad, csak annyi lesz benne, amennyi a tényleges üzleti logikádhoz kell. Nem fog kelleni bele injektálás, annotálás, DOM-részlet, mágja.
 
 Képzeld el, hogy úgy a HTML-ed, CSS-ed, és a JS-ed is újra felhasználható lesz, akár külön külön, akár egyben. Annak ellenére így van, hogy minden ügyfél kicsit máshogy akarja.
 
 ### Hogyan?
 
-Tudom, hogy senki sem ír a való életben helloworld-szerű programokat, de mégis, azon keresztül a legegyszerűbb bemutatni. Különösen egy ennyire más megközelítés esetén fontos, hogy az alapokkal kezdjük.
+Tudom, hogy senki sem ír a való életben helloworld-szerű programokat, de mégis, azon keresztül a legegyszerűbb bemutatni. Különösen egy ennyire szokatlan megközelítés esetén fontos, hogy az alapokkal kezdjük.
 
 hello.js
 ```javascript
